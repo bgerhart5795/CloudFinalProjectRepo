@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Page Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+#divid {
+  display: inline-block;
+  margin: 10px 10px;
+  background-color: #CDCDCD;
+}
+
+.show {
+	text-align: center;
+	background: #fff;
+}
+
+/* Style the body */
+body {
+  font-family: Arial;
+  margin: 0;
+}
+
+/* Header/logo Title */
+.header {
+  padding: 80px;
+  text-align: center;
+  background: #3B793B;
+  color: white;
+}
+
+/* Increase the font size of the heading */
+.header h1 {
+  font-size: 40px;
+}
+
+/* Style the top navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color: #A4D0A4;
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: right;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+/* Right-aligned link */
+.navbar a.right {
+  float: right;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #58A258;
+  color: black;
+}
+
+/* Column container */
+.row {  
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  -ms-flex: 30%; /* IE10 */
+  flex: 30%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+/* Main column */
+.main {   
+  -ms-flex: 70%; /* IE10 */
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+/* Fake image, just for this example */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width: 100%;
+  }
+}
+</style>
+</head>
+<script>
+		async function callAwsLambdaFunction() {
+			fetch( ' https://tgck97yu65.execute-api.us-east-1.amazonaws.com/ReadProduction',  {
+				method: 'GET'
+			  })
+			.then(response => response.json())
+			.then((response) => {
+				console.log(response);
+				response.body.forEach(setlist);
+			});
+        }
+    
+		function setlist(element, index, array) {
+			var listnames= document.getElementById("Names");
+			var listimages= document.getElementById("Images");
+			var nme = document.createElement("P");
+			var ag = document.createElement("P");
+			var img = document.createElement("IMG");
+			var y = document.createElement("div");
+			var music = document.createElement("AUDIO");
+			music.controls = 'controls';
+			music.type = 'audio/mpeg';
+			//music.src = "https://finalproject-gerhart.s3.amazonaws.com/LinkinParkNumb.mp3";
+			img.width = "200";
+			img.height = "200";
+			music.style.width = "130px";
+			music.style.height= "25px";
+			name = " Name: ";
+			age = " Age: ";
+			age = age.bold();
+			name = name.bold();
+			img.style.border = "solid #CDCDCD";
+			y.id = "divid";
+			img.src = element.Image;
+			if (element.Music == undefined) {
+				music.src = "";
+			}
+			else {
+				music.src = element.Music;
+			}
+			nme.innerHTML = name + element.Name;
+			ag.innerHTML = age + element.Age;
+			y.appendChild(img);
+			y.appendChild(nme);
+			y.appendChild(ag);
+			y.appendChild(music);
+			y.style.border = "solid #3B793B";
+			listnames.appendChild(y);
+			
+		}
+	</script> 
+<body onload= "callAwsLambdaFunction();">
+
+<div class="header">
+  <img src="https://finalproject-gerhart.s3.amazonaws.com/YourSpace.png" style="width:500px;height:150px;">
+  <h2>Connect with no one. </h2>
+  <p>A site by Bryce Gerhart </p>
+</div>
+
+<div class="navbar">
+  <a href="https://finalproject-gerhart.s3.amazonaws.com/home.html">Home</a>
+  <a href="https://finalproject-gerhart.s3.amazonaws.com/newprofile.html">New Profile</a>
+</div>
+
+<h1>Show Profiles</h1>
+        <div class= "show" ><ul style="list-style-type: none;" id="Names"></ul><ul style="list-style-type: none;" id="Images"></ul></div>
+  </div>
+  <div class="main">
+    <h2>Check Out These Profiles</h2>
+  </div>
+</div>
+
+<div class="footer">
+  <h5>Bryce Gerhart © 2020</h5>
+</div>
+
+</body>
+</html>
