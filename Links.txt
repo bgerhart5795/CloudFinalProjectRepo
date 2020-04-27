@@ -1,0 +1,3 @@
+https://finalproject-gerhart.s3.amazonaws.com/homepage.html
+https://finalproject-gerhart.s3.amazonaws.com/allprofiles.html
+https://finalproject-gerhart.s3.amazonaws.com/createprofile.html
