@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Page Title</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<title>YourSpace: Create Profile</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -9,20 +10,13 @@
   box-sizing: border-box;
 }
 
-#divid {
-  display: inline-block;
-  margin: 10px 10px;
-  background-color: #CDCDCD;
-}
-
-.show {
+.create {
 	text-align: center;
-	background: #fff;
 }
 
 /* Style the body */
 body {
-  font-family: Arial;
+  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
 }
 
@@ -121,58 +115,35 @@ body {
 }
 </style>
 </head>
-<script>
-		async function callAwsLambdaFunction() {
-			fetch( ' https://tgck97yu65.execute-api.us-east-1.amazonaws.com/ReadProduction',  {
-				method: 'GET'
-			  })
-			.then(response => response.json())
-			.then((response) => {
-				console.log(response);
-				response.body.forEach(setlist);
-			});
-        }
-    
-		function setlist(element, index, array) {
-			var listnames= document.getElementById("Names");
-			var listimages= document.getElementById("Images");
-			var nme = document.createElement("P");
-			var ag = document.createElement("P");
-			var img = document.createElement("IMG");
-			var y = document.createElement("div");
-			var music = document.createElement("AUDIO");
-			music.controls = 'controls';
-			music.type = 'audio/mpeg';
-			//music.src = "https://finalproject-gerhart.s3.amazonaws.com/LinkinParkNumb.mp3";
-			img.width = "200";
-			img.height = "200";
-			music.style.width = "130px";
-			music.style.height= "25px";
-			name = " Name: ";
-			age = " Age: ";
-			age = age.bold();
-			name = name.bold();
-			img.style.border = "solid #CDCDCD";
-			y.id = "divid";
-			img.src = element.Image;
-			if (element.Music == undefined) {
-				music.src = "";
-			}
-			else {
-				music.src = element.Music;
-			}
-			nme.innerHTML = name + element.Name;
-			ag.innerHTML = age + element.Age;
-			y.appendChild(img);
-			y.appendChild(nme);
-			y.appendChild(ag);
-			y.appendChild(music);
-			y.style.border = "solid #3B793B";
-			listnames.appendChild(y);
+<script type="text/javascript">
+		function callAwsLambdaFunction(){
+			var name = $("#name").val();
+			var age = $("#age").val();
+			var image = $("#image").val();
+			var music = $("#music").val();
+			var motto = $("#motto").val();
 			
-		}
+			$.ajax({
+						type: "POST",
+						url: 'https://k9nsquw3f1.execute-api.us-east-1.amazonaws.com/WriteProduction1',
+						contentType: 'application/json',
+						data: JSON.stringify({
+							'Name': name,
+							'Age': age,
+							'Motto': motto,
+							'Image' : image,
+							'Music' : music
+						}),
+						success: function(res){
+							alert('Success');
+						},
+						error: function(){
+							alert('Error');
+						}
+					});
+    }
 	</script> 
-<body onload= "callAwsLambdaFunction();">
+<body>
 
 <div class="header">
   <img src="https://finalproject-gerhart.s3.amazonaws.com/YourSpace.png" style="width:500px;height:150px;">
@@ -181,18 +152,23 @@ body {
 </div>
 
 <div class="navbar">
-  <a href="https://finalproject-gerhart.s3.amazonaws.com/home.html">Home</a>
-  <a href="https://finalproject-gerhart.s3.amazonaws.com/newprofile.html">New Profile</a>
+  <a href="https://finalproject-gerhart.s3.amazonaws.com/homepage.html">Home</a>
+  <a href="https://finalproject-gerhart.s3.amazonaws.com/allprofiles.html">View Profiles</a>
 </div>
 
-<h1>Show Profiles</h1>
-        <div class= "show" ><ul style="list-style-type: none;" id="Names"></ul><ul style="list-style-type: none;" id="Images"></ul></div>
-  </div>
-  <div class="main">
-    <h2>Check Out These Profiles</h2>
-  </div>
+<div class = "create">
+	<h1>Create a Profile</h1>
+		<form >
+			 Name: <input type = "text" name = "name" id="name" required /><br><br>
+			 Age: <input type = "text" name = "age" id="age" required /><br><br>
+			 Motto: <input type = "text" name = "motto" id="motto" required /><br><br>
+			 Image: <input type = "text" name = "image" id="image"  required /><br><br>
+			 Music: <input type = "text" name = "music" id="music" /><br><br>
+		</form>
+			<p><div id="Create"></div></p>
+			<button onclick="callAwsLambdaFunction()">Create Profile</button>
 </div>
-
+	
 <div class="footer">
   <h5>Bryce Gerhart © 2020</h5>
 </div>

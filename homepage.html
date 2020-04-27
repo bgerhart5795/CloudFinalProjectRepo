@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Page Title</title>
+<title>YourSpace: Home</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -14,6 +14,12 @@
   display: inline-block;
   margin: 10px 10px;
   background-color: #CDCDCD;
+}
+
+.creatorsprofile {
+	width: 250px;
+	text-align:center;
+	background: #CDCDCD;
 }
 
 * {
@@ -77,10 +83,9 @@ body {
 /* Create two unequal columns that sits next to each other */
 /* Sidebar/left column */
 .side {
-  -ms-flex: 30%; /* IE10 */
-  flex: 30%;
   background-color: #f1f1f1;
   padding: 20px;
+  width: 350px;
 }
 
 /* Main column */
@@ -91,11 +96,11 @@ body {
   padding: 20px;
 }
 
-/* Fake image, just for this example */
-.fakeimg {
-  background-color: #aaa;
+.textbox {
+  background-color: #CDCDCD;
   width: 100%;
   padding: 20px;
+  text-align:center;
 }
 
 /* Footer */
@@ -180,25 +185,23 @@ body {
 </div>
 
 <div class="navbar">
-  <a href="https://finalproject-gerhart.s3.amazonaws.com/newprofile.html">New Profile</a>
-  <a href="https://finalproject-gerhart.s3.amazonaws.com/viewprofiles.html">View Profiles</a>
+  <a href="https://finalproject-gerhart.s3.amazonaws.com/createprofile.html">New Profile</a>
+  <a href="https://finalproject-gerhart.s3.amazonaws.com/allprofiles.html">View Profiles</a>
 </div>
 
 <div class="row">
   <div class="side">
-    <h2>Bryce's Profile</h2>
-    <h5>Photo of me:</h5>
-    <div><img src="https://finalproject-gerhart.s3.amazonaws.com/Bryce.jpg"></div>
-    <h3>My Motto:</h3>
-	<p>Wanted.. Dead or Alive</p>
-	<audio controls>
-  <source src="https://finalproject-gerhart.s3.amazonaws.com/LinkinParkNumb.mp3" type="audio/mpeg">
-Your browser does not support the audio element.
-</audio>
-    <p>Lorem ipsum dolor sit ame.</p>
-    <div class="fakeimg" style="height:60px;">Image</div><br>
-    <div class="fakeimg" style="height:60px;">Image</div><br>
-    <div class="fakeimg" style="height:60px;">Image</div>
+    <h2>The Creator's Profile</h2>
+	<div class="creatorsprofile">
+		<div class = "me"><img src="https://finalproject-gerhart.s3.amazonaws.com/Bryce.jpg" style="border: 3px solid #3B793B; height:250px; width:250px;"  ></div>
+		<h4>My Motto:</h4>
+		<h3>Sub-Par Web Designer</h3>
+		<h4>My Jam:</h4>
+			<audio controls style="width: 200px;">
+			<source src="https://finalproject-gerhart.s3.amazonaws.com/LinkinParkNumb.mp3" type="audio/mpeg">
+				Your browser does not support the audio element.
+			</audio>
+	</div>
   </div>
   <div class="main">
     <h2>Check Out These Profiles</h2>
@@ -208,9 +211,14 @@ Your browser does not support the audio element.
 	</div>
     <br>
 	<h2>YourSpace Makes It Even Easier to Practice Social Distancing Online!</h2>
-    <div class="fakeimg" style="height:200px;">Image</div>
-    <p>Some text..</p>
-    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    <div class="textbox" style="height:200px;">
+		<div>
+		<h4 style = "font-family:Arial;">Ever want to see random strangers from all around the world, but never talk to them? Heres your chance!<br>
+		YourSpace, the AntiSocial network, allows you to create a user profile with your name, age, motto, and <br>
+		your favorite music to share with everyone! However, good luck contacting another user. YourSpace's <br>
+		patented "AntiSocial" technology prevents anyone from ever messaging you! How neat is that!<br></h4>
+		</div>
+	</div>
   </div>
 </div>
 
