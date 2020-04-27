@@ -1,0 +1,47 @@
+Core Resources
+
+Display Profile
+
+	This object displays all profiles from the dynamo db. There is one method. 
+	
+GET
+	This function retrieves all data for each profile. This calls DisplayProfileAPI which calls the lambda function ReadProfile.
+	The lambda function accesses the DynamoDB Profile table and returns the image url, the name, the age, the motto, and the music url.
+
+Sample Call
+	This is a simple GET call, and requires no body.
+Sample Response
+	{
+  "statusCode": 200,
+  "body": [
+    {
+      "Motto": "meep beep bop",
+      "Music": "   ",
+      "ProfileID": "611a87ff-8665-4a79-a350-78214de05233",
+      "Image": "https://pbs.twimg.com/media/EUkpEh3UYAABJNp.jpg",
+      "Age": "50",
+      "Name": "K.K. Slider"
+    },
+ ],
+  "headers": {
+    "Access-Control-Allow-Origin": "*"
+  }
+}
+
+
+
+Create Profile
+
+POST
+	This posts profile information inputted by the user. This calls CreateProfileAPI which then calls the lambda function WriteProfile. 
+	The lambda function takes each data field inputted by the user and sends it to the DynamoDb Profile Table. 
+
+Sample Call
+	This POST call requires no body.
+Sample Response
+{
+  "statusCode": 201,
+  "body": "success"
+}
+
+	
